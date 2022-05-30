@@ -7,7 +7,7 @@ import (
 )
 
 // SimpleHttpGetMain シンプル HTTP GET関数
-func SimpleHttpGetMain(url string) {
+func SimpleHttpGetMain(url string) int {
 
 	//指定されたURLへのGETメソッド処理実行
 	resp, err := http.Get(url)
@@ -15,11 +15,13 @@ func SimpleHttpGetMain(url string) {
 	if err != nil {
 		//エラー処理
 		print("Get error!")
-		return
+		//異常終了を通知
+		return -1
 	}
 
 	//この関数を抜けた後の処理を定義する
 	//ソケットからBODYデータを読み込んだ後にクローズ処理を実行する
+	//Pythonのwithのようなコードを作れる
 	defer resp.Body.Close()
 
 	//BODYデータをソケットからバイト列として読み込む
@@ -27,10 +29,22 @@ func SimpleHttpGetMain(url string) {
 	if err != nil {
 		//エラー処理
 		print("Body data read error!")
-		return
+		//異常終了を通知
+		return -1
 	}
 
-	//バイト列をUTF-8文字列に変換して出力
-	log.Println(string(body))
+	//ステータスを出力
+	log.Println("Status:", resp.Status)
+	//ステータスコードを出力
+	log.Println("StatusCode:", resp.StatusCode)
+
+	//ヘッダを出力
+	log.Println("Header:", resp.Header)
+
+	//BODYのバイト列をUTF-8文字列に変換して出力
+	log.Println("body:", string(body))
+
+	//正常終了
+	return 0
 
 }
