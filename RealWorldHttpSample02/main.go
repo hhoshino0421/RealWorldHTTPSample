@@ -115,11 +115,45 @@ func MultipartPostMain() {
 
 }
 
+// MimePostMain 任意のMIMEを設定してPOST処理
+func MimePostMain() {
+
+	url := "http://localhost:18888/"
+
+	ret := HttpPost.MimePost(url)
+
+	if ret < 0 {
+		//関数内でエラー発生時の処理
+		println("Error!")
+		return
+	}
+
+	println("Success.")
+
+}
+
+// CookieGetMain Cookieの送受信GET処理
+func CookieGetMain() {
+
+	url := "http://localhost:18888/cookie"
+
+	ret := HttpGet.CookieGet(url)
+
+	if ret < 0 {
+		//関数内でエラー発生時の処理
+		println("Error!")
+		return
+	}
+
+	println("Success.")
+
+}
+
 // startMain 処理開始関数
 func startMain() {
 
 	var (
-		f = flag.Int("f", -1, "Process Flag: 1=SimpleHTTPGet, 2:QueryHTTPGet, 3:HttpHead, 4:FormUrlencodedPost, 5:FilePost, 6:MultipartPost")
+		f = flag.Int("f", -1, "Process Flag: 1=SimpleHTTPGet, 2:QueryHTTPGet, 3:HttpHead, 4:FormUrlencodedPost, 5:FilePost, 6:MultipartPost 7:MinePost 8:CookieGet")
 	)
 
 	//コマンドライン引数を解析
@@ -146,8 +180,14 @@ func startMain() {
 		//FileのPOST処理
 		FilePostMain()
 	case 6:
-		//Multipart-form-dataのPOST処理
+		//Multipart/form-dataのPOST処理
 		MultipartPostMain()
+	case 7:
+		//Multipart/form-dataで任意のMIMEタイプを設定してPOST処理
+		MimePostMain()
+	case 8:
+		//CookieのGET送受信
+		CookieGetMain()
 	default:
 		println("Parameter error. InParam:%d", *f)
 	}
