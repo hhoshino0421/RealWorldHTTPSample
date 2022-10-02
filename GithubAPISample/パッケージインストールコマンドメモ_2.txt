@@ -1,0 +1,4 @@
+hhoshino@hoshinohinoMBP2 ~ % go install github.com/skratchdot/open-golang@latest
+go: downloading github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
+go: github.com/skratchdot/open-golang@latest: module github.com/skratchdot/open-golang@latest found (v0.0.0-20200116055534-eef842397966), but does not contain package github.com/skratchdot/open-golang
+hhoshino@hoshinohinoMBP2 ~ % 

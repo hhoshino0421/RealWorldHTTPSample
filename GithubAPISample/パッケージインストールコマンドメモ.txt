@@ -1,0 +1,5 @@
+hhoshino@hoshinohinoMBP2 ~ % go install golang.org/x/oauth2@latest
+go: downloading golang.org/x/oauth2 v0.0.0-20220909003341-f21342109be1
+go: downloading golang.org/x/net v0.0.0-20220624214902-1bab6f366d9e
+package golang.org/x/oauth2 is not a main package
+hhoshino@hoshinohinoMBP2 ~ %
